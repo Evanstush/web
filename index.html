@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evans Mutuma | Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f4f6f8;
+    }
+
+    section {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .hero-img {
+      border: 5px solid #0d6efd;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-gradient {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
+
+    .skills-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-card img {
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+
+    .card-title {
+      color: #0d6efd;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: 50px;
+      padding: 8px 20px;
+    }
+
+    .typed-text {
+      border-right: 2px solid #0d6efd;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: typing 3s steps(40, end) forwards;
+    }
+
+    .cursor {
+      display: inline-block;
+      animation: blink 0.7s infinite;
+      color: #0d6efd;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 26ch
+      }
+    }
+
+    @keyframes blink {
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Evans Mutuma</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-outline-primary ms-2" href="resume/Full CV for web.pdf" download>Download CV</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient py-5 text-center">
+    <div class="container">
+      <img src="pics/p1.jpg" alt="Evans Profile" class="rounded-circle hero-img mb-3" width="160">
+      <h1 class="fw-bold">
+        <span class="typed-text">Hello There. I’m Evans Mutuma.</span>
+
+      </h1>
+      <p class="lead">
+      Full-Stack Architect | Data Scientist (In Training) | Innovation Machine  
+  <br>Builder of Tech Dreams, Defender of Data, and Future Disruptor of the Status Quo 🚀
+</p>
+
+    </div>
+  </header>
+
+  <!-- About Section -->
+<section id="about" class="bg-light py-5" data-aos="fade-up">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Left Column: Image -->
+      <div class="col-md-5 mb-4 mb-md-0 text-center">
+        <img src="pics/p2.jpg" alt="Evans Mutuma" class="img-fluid rounded-3 shadow" style="max-height: 400px;">
+      </div>
+
+      <!-- Right Column: Content -->
+      <div class="col-md-7" data-aos="fade-right">
+        <h2 class="mb-4 text-primary">👨‍💻 About Me</h2>
+        <p class="lead text-dark">
+          I’m <strong>Evans Mutuma</strong>, a passionate and resilient tech enthusiast based in <strong>Nairobi, Kenya</strong>.
+        </p>
+        <ul class="list-unstyled mb-3">
+          <li><i class="bi bi-code-slash text-primary me-2"></i> Web Developer | Data Analyst | Tech Visionary</li>
+          <li><i class="bi bi-tools text-primary me-2"></i> Skilled in Django, HTML, CSS, JS, MySQL & Bootstrap</li>
+          <li><i class="bi bi-mortarboard text-primary me-2"></i> BSc in Mathematics & Computer Science</li>
+          <li><i class="bi bi-award text-primary me-2"></i> Certified by Emobilis Institute in Web Development</li>
+          <li><i class="bi bi-bar-chart-line text-primary me-2"></i> Attachment at Machakos Technical Institute for the Blind (Data Analyst)</li>
+        </ul>
+
+        <p class="mb-0"><em>“I turn bold ideas into scalable realities — <strong>one line of code at a time.</strong>”</em></p>
+
+
+
+        <div class="border-start border-4 border-primary ps-3 my-3">
+          <p class="mb-0"><em>“I don’t just build websites — I build tools that inform, connect, and empower.”</em></p>
+        </div>
+
+        <p>I value <strong>clarity, community, and growth</strong>. I’m passionate about <strong>mentorship, teaching, and building tech for good</strong>. Whether it’s helping a startup get online or enabling youth with digital tools — I aim to leave a meaningful mark.</p>
+
+        <a href="#projects" class="btn btn-primary mt-3">
+          View My Projects <i class="bi bi-arrow-right-circle ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Skills Section -->
+<section id="skills" class="bg-light py-5">
+  <div class="container">
+    <h2 class="mb-4">Skills & Tools</h2>
+    <div class="row">
+
+      <!-- Languages & Frameworks -->
+      <div class="col-md-6">
+        <h5 class="mb-3">Languages & Frameworks</h5>
+        <p class="text-muted mb-4">Here are the technologies I bend to my will. 💻</p>
+
+
+        <!-- Python -->
+        <div class="mb-3">
+          <label class="form-label">Python</label>
+          <div class="progress">
+            <div class="progress-bar bg-primary" style="width: 90%;">90%</div>
+          </div>
+        </div>
+
+        <!-- Django -->
+        <div class="mb-3">
+          <label class="form-label">Django</label>
+          <div class="progress">
+            <div class="progress-bar bg-success" style="width: 85%;">85%</div>
+          </div>
+        </div>
+
+        <!-- HTML/CSS -->
+        <div class="mb-3">
+          <label class="form-label">HTML/CSS</label>
+          <div class="progress">
+            <div class="progress-bar bg-info" style="width: 95%;">95%</div>
+          </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="mb-3">
+          <label class="form-label">JavaScript</label>
+          <div class="progress">
+            <div class="progress-bar bg-warning" style="width: 60%;">60%</div>
+          </div>
+        </div>
+
+        <!-- Git & GitHub -->
+        <div class="mb-3">
+          <label class="form-label">Git & GitHub</label>
+          <div class="progress">
+            <div class="progress-bar bg-secondary" style="width: 65%;">65%</div>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="mb-3">
+          <label class="form-label">SQL / MySQL / PostgreSQL</label>
+          <div class="progress">
+            <div class="progress-bar bg-dark" style="width: 50%;">50%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Platforms -->
+      <div class="col-md-6" data-aos="fade-up">
+        <h5 class="mb-3">Tools & Platforms</h5>
+        <div class="row row-cols-2 g-3 text-center">
+
+          <!-- Git & GitHub -->
+          <div class="col">
+            <div class="p-3 border rounded shadow-sm h-100">
+              <i class="bi bi-git fs-1 text-danger mb-2"></i>
+              <h6 class="fw-bold">Git & GitHub</h6>
+              <small class="text-muted">Version Control</small>
+            </div>
+          </div>
+
+          <!-- VS Code -->
+          <div class="col">
+            <div class="p-3 border rounded shadow-sm h-100">
+              <i class="bi bi-code-slash fs-1 text-primary mb-2"></i>
+              <h6 class="fw-bold">VS Code</h6>
+              <small class="text-muted">Coding IDE</small>
+            </div>
+          </div>
+
+          <!-- Excel -->
+          <div class="col">
+            <div class="p-3 border rounded shadow-sm h-100">
+              <i class="bi bi-bar-chart-line fs-1 text-success mb-2"></i>
+              <h6 class="fw-bold">Excel</h6>
+              <small class="text-muted">Data Analysis</small>
+            </div>
+          </div>
+
+          <!-- Hosting -->
+          <div class="col">
+            <div class="p-3 border rounded shadow-sm h-100">
+              <i class="bi bi-cloud-arrow-up fs-1 text-info mb-2"></i>
+              <h6 class="fw-bold">Hosting</h6>
+              <small class="text-muted">GitHub Pages & Render</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Projects Section -->
+  <section id="projects" class="bg-white">
+    <div class="container">
+      <h2 class="mb-4">Projects</h2>
+      <div class="row">
+
+        <div class="col-md-6 mb-4">
+          <div class="card project-card">
+            <img src="project/rent1.png" class="card-img-top" alt="Tush Rental App">
+            <div class="card-body">
+              <h5 class="card-title">Tush Rental System <span class="badge bg-success ms-2">Live</span></h5>
+              <p class="card-text">A Django-based rent collection platform with Mpesa integration, document upload, community chat, and a full admin panel.</p>
+              <a href="#" class="btn btn-primary">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card project-card">
+            <img src="project/qb1.avif" class="card-img-top" alt="Kenyan QuickBooks">
+            <div class="card-body">
+              <h5 class="card-title">QuickBooks Kenya <span class="badge bg-warning text-dark ms-2">In Progress</span></h5>
+              <p class="card-text">A simplified accounting app for local SMEs. Tracks daily expenses, incomes, and produces smart charts and summaries.</p>
+              <a href="#" class="btn btn-primary">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card project-card">
+            <img src="project/coming-soon.avif" class="card-img-top" alt="Politician Tracker">
+            <div class="card-body">
+              <h5 class="card-title">Politician Tracker <span class="badge bg-secondary ms-2">Coming Soon</span></h5>
+              <p class="card-text">A proposed app that tracks promises, failures, court cases, and achievements of Kenyan politicians. Includes mobile UI and future AI integration.</p>
+              <a href="#" class="btn btn-secondary">Coming Soon</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" class="bg-light">
+    <div class="container">
+      <h2 class="mb-4">My Vision</h2>
+     <p>My vision is bold: To be a <strong>leading force in Africa’s digital transformation</strong>. Through software, data, and disruptive thinking, I’m crafting a future where <strong>technology empowers every Kenyan</strong>, regardless of background or ability.</p>
+
+<p>In the near future, I plan to:</p>
+<ul>
+  <li>Build apps that track and guide financial growth for Kenyan youth</li>
+  <li>Create a smart farming platform to detect plant diseases using AI</li>
+  <li>Develop inclusive tech solutions for visually impaired learners</li>
+</ul>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="bg-white">
+  <div class="container">
+    <h2 class="mb-4">Contact Me</h2>
+    <form action="https://formspree.io/f/xgvzpeaw" method="POST" class="p-4 bg-light rounded shadow-sm needs-validation" novalidate>
+  <div class="mb-3">
+    <label for="name" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+    <div class="invalid-feedback">Please enter your name.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email Address</label>
+    <input type="email" class="form-control" id="email" name="_replyto" required>
+    <div class="invalid-feedback">Please enter a valid email address.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="message" class="form-label">Your Message</label>
+    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+    <div class="invalid-feedback">Please enter your message.</div>
+  </div>
+
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary">Send Message</button>
+  </div>
+
+  <div id="form-alert" class="alert alert-success mt-3 d-none" role="alert">
+    ✅ Message sent successfully! I’ll get back to you soon.
+  </div>
+</form>
+
+
+    <hr class="my-5">
+
+    <p><strong>Email:</strong> <a href="mailto:gichuruevansmutuma@gmail.com">gichuruevansmutuma@gmail.com</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/254757010521">+254 757 010 521</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/Evanstush" target="_blank">github.com/Evanstush</a></p>
+    <p><strong>Location:</strong> Nairobi, Kenya</p>
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-white">
+    <div class="container">
+      <h2 class="mb-4">Contact Me</h2>
+      <p><strong>Email:</strong> <a href="mailto:gichuruevansmutuma@gmail.com">gichuruevansmutuma@gmail.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/254757010521">+254 757 010 521</a></p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/Evanstush" target="_blank">github.com/Evanstush</a></p>
+      <p><strong>Location:</strong> Nairobi, Kenya</p>
+    </div>
+  </section>
+
+
+  <section class="bg-primary text-white text-center py-5">
+  <div class="container">
+    <h3 class="fw-bold mb-3">💡 Building More Than Code</h3>
+    <p class="lead mb-0">Every project I touch is designed to spark change — in communities, in minds, and in the future of Africa’s tech industry.</p>
+  </div>
+</section>
+
+  <hr>
+<p class="mt-4 text-muted">Want to build the next big thing together? Let's talk!  
+        I'm just an email, ping, or code push away 🚀</p>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2025 Evans Mutuma. All rights reserved.</p>
+  </footer>
+
+  <script>
+  (() => {
+    'use strict';
+    const form = document.querySelector('form');
+    const alertBox = document.getElementById('form-alert');
+
+    form.addEventListener('submit', async (e) => {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        form.classList.add('was-validated');
+      } else {
+        e.preventDefault(); // prevent default form submit
+        const formData = new FormData(form);
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (res.ok) {
+            alertBox.classList.remove('d-none');
+            form.reset();
+            form.classList.remove('was-validated');
+          } else {
+            alertBox.classList.remove('d-none');
+            alertBox.classList.replace('alert-success', 'alert-danger');
+            alertBox.innerText = '❌ Something went wrong. Please try again.';
+          }
+        } catch (error) {
+          alertBox.classList.remove('d-none');
+          alertBox.classList.replace('alert-success', 'alert-danger');
+          alertBox.innerText = '❌ Network error. Try again later.';
+        }
+      }
+    });
+  })();
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
