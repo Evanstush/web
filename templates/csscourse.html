@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CSS — Complete Course & Reference | Evans Mutuma</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#0d6efd;
+      --bg:#f4f7fb;
+      --muted:#6c757d;
+      --code-bg:#0b1220;
+      --green:#4caf50;
+      --blue:#2196f3;
+      --orange:#ff9800;
+      --comment:#9e9e9e;
+      --accent1:#7c4dff;
+      --accent2:#ff6b6b;
+      --accent3:#00c2a8;
+    }
+    html,body{height:100%}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      margin:0;
+      color:#222;
+    }
+
+    /* Layout */
+    .sidebar-wrap{
+      position:fixed; top:0; left:0; bottom:0; width:320px; padding:1rem; overflow-y:auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,251,255,0.98));
+      border-right:1px solid #e6eefc; z-index:1030;
+    }
+    .content-wrap{margin-left:360px; padding:2rem; max-width:1200px}
+    @media (max-width: 991px){
+      .sidebar-wrap{position:static; width:100%; height:auto; border-right:none}
+      .content-wrap{margin-left:0; padding:1rem}
+    }
+
+    /* Sidebar content */
+    .profile-sm{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--brand)}
+    .toc .section{font-weight:700;margin-top:1rem;color:var(--muted)}
+    .toc a{display:block;padding:.35rem .6rem;color:var(--brand);text-decoration:none;border-radius:6px}
+    .toc a:hover{background:rgba(13,110,253,0.06)}
+    .toc a.active{background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(13,110,253,0.02));font-weight:600}
+    #sidebarSearch{font-size:.9rem}
+
+    /* Card / lesson styling */
+    .lesson{background:#fff;padding:1.6rem;border-radius:12px;box-shadow:0 10px 30px rgba(19, 38, 63, 0.04);margin-bottom:1.25rem}
+    h1,h2,h3{color:#0b2545}
+    .small-muted{color:var(--muted)}
+
+    /* Code blocks & syntax highlight */
+    .code{background:var(--code-bg); color:#e6eef8; padding:1rem; border-radius:8px; overflow:auto; font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.92rem}
+    .cmt{color:var(--comment); font-style:italic}
+    .sel{color:var(--green)}
+    .prop{color:var(--blue)}
+    .val{color:var(--orange)}
+    .tag{background:#eef5ff;border:1px solid #d7e8ff;padding:.12rem .45rem;border-radius:6px;font-family:monospace}
+
+    /* Color swatches */
+    .swatch{width:56px;height:40px;border-radius:6px;border:1px solid rgba(0,0,0,0.06)}
+    .swatch-label{font-size:.82rem;margin-top:.45rem;color:var(--muted)}
+
+    /* Callouts */
+    .note{background:linear-gradient(90deg,#f1f7ff,#fbfdff);border-left:4px solid var(--brand);padding:.9rem;border-radius:6px}
+    .tip{background:linear-gradient(90deg,#fff7e6,#fffdf6);border-left:4px solid #ffc107;padding:.9rem;border-radius:6px}
+
+    /* Table docs */
+    table.doc{width:100%;border-collapse:collapse;margin-top:.6rem}
+    table.doc th, table.doc td{border:1px solid #eef3ff;padding:.5rem;vertical-align:top}
+
+    /* Collapsible details minor fix */
+    details summary{list-style:none;outline:none}
+    details[open] summary{color:var(--brand)}
+
+    /* Small responsive utilities for examples */
+    .kbd{background:#111827;color:#fff;padding:.12rem .5rem;border-radius:.4rem;font-family:monospace;font-size:.82rem}
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-wrap">
+    <div class="d-flex align-items-center mb-3">
+      <img src="../pics/p1.jpg" alt="Evans" class="profile-sm me-2">
+      <div>
+        <div class="fw-bold">Evans Mutuma</div>
+        <div class="small-muted">CSS — Full Course</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input id="sidebarSearch" class="form-control form-control-sm" placeholder="Search topics...">
+    </div>
+
+    <nav class="toc" id="toc">
+      <div class="section">Foundations</div>
+      <a href="#intro">Intro & Where CSS Fits</a>
+      <a href="#syntax">Syntax & Selectors</a>
+      <a href="#boxmodel">Box Model & Display</a>
+
+      <div class="section">Styling Basics</div>
+      <a href="#colors">Colors & Palettes</a>
+      <a href="#typography">Typography & Fonts</a>
+      <a href="#backgrounds">Backgrounds & Borders</a>
+
+      <div class="section">Layout</div>
+      <a href="#flexbox">Flexbox (Detailed)</a>
+      <a href="#grid">CSS Grid (Detailed)</a>
+      <a href="#positioning">Positioning & Sticky</a>
+
+      <div class="section">Responsive</div>
+      <a href="#responsive">Media Queries & Units</a>
+      <a href="#fluid">Fluid Typography & clamp()</a>
+
+      <div class="section">Advanced</div>
+      <a href="#transitions">Transitions & Transforms</a>
+      <a href="#animations">Animations & Keyframes</a>
+      <a href="#variables">Custom Properties</a>
+      <a href="#functions">calc(), min(), max(), clamp()</a>
+
+      <div class="section">UX & Perf</div>
+      <a href="#accessibility">Accessibility & Motion</a>
+      <a href="#performance">Performance & Rendering</a>
+      <a href="#patterns">Common UI Patterns</a>
+
+      <div class="mt-3 small text-muted">Tip: use search to quickly find a topic. Sidebar stays visible on desktop.</div>
+    </nav>
+  </div>
+
+  <div class="content-wrap">
+    <header class="mb-4">
+      <h1 class="display-6">CSS — Complete Course & Reference</h1>
+      <p class="small-muted">From fundamentals to modern layout, animations, variables and performance. Each section explains <strong>what</strong>, <strong>why</strong>, and <strong>how</strong> with examples and best practices.</p>
+    </header>
+
+    <!-- INTRO -->
+    <section id="intro" class="lesson">
+      <h2>Introduction — Where CSS Fits</h2>
+      <p>CSS (Cascading Style Sheets) controls presentation — color, spacing, layout, and visual behavior. HTML structures content; CSS styles it; JavaScript adds behavior. Keep concerns separate for maintainability and accessibility.</p>
+      <div class="row g-3 mt-3">
+        <div class="col-md-6">
+          <div class="note"><strong>Pro tip:</strong> start with semantic HTML. Use CSS to enhance, not to fix missing semantics.</div>
+        </div>
+        <div class="col-md-6">
+          <div class="tip"><strong>Design tokens:</strong> centralize colors, spacing, radii using CSS variables for consistency across the site.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYNTAX -->
+    <section id="syntax" class="lesson">
+      <h2>Syntax, Selectors & Specificity</h2>
+
+      <details open>
+        <summary class="mb-2">Basic Syntax</summary>
+        <div class="code"><span class="cmt">/* selector { property: value; } */</span>
+<span class="sel">.btn</span> {
+  <span class="prop">color</span>: <span class="val">#fff</span>;
+  <span class="prop">background</span>: <span class="val">var(--brand)</span>;
+  <span class="prop">padding</span>: <span class="val">0.6rem 1rem</span>;
+}</div>
+      </details>
+
+      <details>
+        <summary>Selectors (what to use & when)</summary>
+        <div class="mt-2">
+          <table class="doc">
+            <thead><tr><th>Selector</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td><code>element</code></td><td>Global rules for tags (e.g., <code>p</code>, <code>h1</code>)</td></tr>
+              <tr><td><code>.class</code></td><td>Preferred for components & reusability</td></tr>
+              <tr><td><code>#id</code></td><td>Unique items; avoid for general styling (high specificity)</td></tr>
+              <tr><td><code>[attr]</code></td><td>Style by attributes (useful for inputs & states)</td></tr>
+              <tr><td><code>:hover / :focus</code></td><td>User interaction states (keyboard + mouse)</td></tr>
+              <tr><td><code>:nth-child()</code></td><td>Structural patterns without extra markup</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>Specificity rules (short)</summary>
+        <p class="mt-2 small-muted">Specificity ranking: inline styles > IDs (#) > classes/attributes/pseudo-classes > elements/pseudo-elements. Use low-specificity class-based rules for maintainability. Avoid <code>!important</code> except as last resort.</p>
+      </details>
+    </section>
+
+    <!-- BOX MODEL -->
+    <section id="boxmodel" class="lesson">
+      <h2>Box Model & Display</h2>
+
+      <details open>
+        <summary>Box Model (content → padding → border → margin)</summary>
+        <div class="mt-2">
+          <div class="code"><span class="cmt">/* border-box makes width include padding & border */</span>
+*,
+*::before,
+*::after { <span class="prop">box-sizing</span>: <span class="val">border-box</span>; }</div>
+          <p class="mt-2 small-muted">Using <code>border-box</code> simplifies sizing; recommended for most projects.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>display: block / inline / inline-block / none</summary>
+        <p class="mt-2">Block elements take full width. Inline elements flow within text. Inline-block allows dimensions. <code>display: none</code> removes from flow (not the same as visibility hidden).</p>
+      </details>
+
+      <details>
+        <summary>Overflow & scroll containers</summary>
+        <p class="mt-2">Use <code>overflow: auto</code> for scrollable areas; prefer GPU-accelerated transforms for interactive content inside scroll regions.</p>
+      </details>
+    </section>
+
+    <!-- COLORS -->
+    <section id="colors" class="lesson">
+      <h2>Colors & Palettes</h2>
+
+      <details open>
+        <summary>Color formats</summary>
+        <div class="mt-2">
+          <div class="code">
+<span class="cmt">/* hex, rgb(a), hsl(a) */</span>
+.selector { <span class="prop">color</span>: <span class="val">#0d6efd</span>; }
+.selector { <span class="prop">background</span>: <span class="val">rgb(13,110,253)</span>; }
+.selector { <span class="prop">border-color</span>: <span class="val">hsl(220,90%,56%)</span>; }
+          </div>
+          <p class="mt-2 small-muted">HSL is great for programmatic color changes (lighten/darken by adjusting L).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Create a palette (example)</summary>
+        <div class="row g-3 mt-3">
+          <div class="col-auto text-center">
+            <div class="swatch" style="background:var(--accent1)"></div>
+            <div class="swatch-label">Accent 1<br><small class="small-muted">#7c4dff</small></div>
+          </div>
+          <div class="col-auto text-center">
+            <div class="swatch" style="background:var(--accent2)"></div>
+            <div class="swatch-label">Accent 2<br><small class="small-muted">#ff6b6b</small></div>
+          </div>
+          <div class="col-auto text-center">
+            <div class="swatch" style="background:var(--accent3)"></div>
+            <div class="swatch-label">Accent 3<br><small class="small-muted">#00c2a8</small></div>
+          </div>
+          <div class="col-auto text-center">
+            <div class="swatch" style="background:var(--brand)"></div>
+            <div class="swatch-label">Primary<br><small class="small-muted">#0d6efd</small></div>
+          </div>
+        </div>
+        <p class="mt-3 small-muted">Keep 3–5 colors and a set of neutrals. Use contrast checkers for accessibility.</p>
+      </details>
+
+      <details>
+        <summary>Using alpha/transparency</summary>
+        <p class="mt-2 small-muted">Use <code>rgba()</code> or <code>hsla()</code> for overlays; avoid semi-opaque text over images when readability suffers.</p>
+      </details>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography" class="lesson">
+      <h2>Typography & Text</h2>
+
+      <details open>
+        <summary>Font stack & performance</summary>
+        <div class="code"><span class="cmt">/* prefer system fonts for performance */</span>
+body { <span class="prop">font-family</span>: <span class="val">Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif</span>; }</div>
+        <p class="mt-2 small-muted">Use <code>font-display: swap</code> when self-hosting or using web fonts to avoid invisible text.</p>
+      </details>
+
+      <details>
+        <summary>Sizes, line-height & rhythm</summary>
+        <p class="mt-2">Use a scale (e.g., 0.875rem, 1rem, 1.125rem...) and consistent <code>line-height</code> (1.4–1.8) to improve readability. Use <code>rem</code> for scalable sizing and accessibility.</p>
+      </details>
+
+      <details>
+        <summary>Text properties</summary>
+        <div class="code"><span class="sel">p</span> { <span class="prop">color</span>: <span class="val">#333</span>; <span class="prop">line-height</span>: <span class="val">1.6</span>; }</div>
+      </details>
+    </section>
+
+    <!-- BACKGROUNDS & BORDERS -->
+    <section id="backgrounds" class="lesson">
+      <h2>Backgrounds, Borders & Shadows</h2>
+
+      <details open>
+        <summary>Background images & gradients</summary>
+        <div class="code"><span class="cmt">/* cover background with center */</span>
+.hero { <span class="prop">background</span>: <span class="val">url('/hero.jpg') center/cover no-repeat</span>; }
+
+.panel { <span class="prop">background</span>: <span class="val">linear-gradient(180deg,#fff,#f1f7ff)</span>; }</div>
+      </details>
+
+      <details>
+        <summary>Border radius & shadow</summary>
+        <div class="code"><span class="sel">.card</span> { <span class="prop">border-radius</span>: <span class="val">12px</span>; <span class="prop">box-shadow</span>: <span class="val">0 8px 24px rgba(12,40,80,0.06)</span>; }</div>
+        <p class="mt-2 small-muted">Use consistent radii (e.g., 4,8,12,16) across components for coherence.</p>
+      </details>
+    </section>
+
+    <!-- FLEXBOX -->
+    <section id="flexbox" class="lesson">
+      <h2>Flexbox — One-dimensional Layout</h2>
+
+      <details open>
+        <summary>Core concepts & properties</summary>
+        <div class="mt-2">
+          <div class="code"><span class="sel">.row</span> { <span class="prop">display</span>: <span class="val">flex</span>; <span class="prop">gap</span>: <span class="val">1rem</span>; <span class="prop">align-items</span>: <span class="val">center</span>; }</div>
+          <p class="mt-2 small-muted">Flexbox excels at aligning items and distributing space in a single axis.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Flex item sizing</summary>
+        <div class="code"><span class="sel">.col</span> { <span class="prop">flex</span>: <span class="val">1 1 0</span>; }</div>
+        <p class="mt-2 small-muted">Shorthand <code>flex: grow shrink basis</code>. Use carefully to avoid layout jumps.</p>
+      </details>
+
+      <details>
+        <summary>Practical examples</summary>
+        <div class="code"><span class="cmt">/* center a loader */</span>
+.container { <span class="prop">display</span>: <span class="val">flex</span>; <span class="prop">align-items</span>: <span class="val">center</span>; <span class="prop">justify-content</span>: <span class="val">center</span>; }</div>
+      </details>
+    </section>
+
+    <!-- GRID -->
+    <section id="grid" class="lesson">
+      <h2>CSS Grid — Two-dimensional Layout</h2>
+
+      <details open>
+        <summary>Grid basics</summary>
+        <div class="code"><span class="sel">.grid</span> { <span class="prop">display</span>: <span class="val">grid</span>; <span class="prop">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>; <span class="prop">gap</span>: <span class="val">1rem</span>; }</div>
+        <p class="mt-2 small-muted">Grid controls both rows and columns; ideal for complex layouts and dashboards.</p>
+      </details>
+
+      <details>
+        <summary>Responsive grids</summary>
+        <div class="code"><span class="sel">.cards</span> { <span class="prop">display</span>: <span class="val">grid</span>; <span class="prop">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(220px, 1fr))</span>; <span class="prop">gap</span>: <span class="val">1rem</span>; }</div>
+      </details>
+
+      <details>
+        <summary>Named areas & alignment</summary>
+        <div class="code"><span class="sel">.layout</span> { <span class="prop">grid-template-areas</span>: <span class="val">"header header" "sidebar main" "footer footer"</span>; }</div>
+      </details>
+    </section>
+
+    <!-- POSITIONING -->
+    <section id="positioning" class="lesson">
+      <h2>Positioning & Sticky</h2>
+
+      <details>
+        <summary>Position property</summary>
+        <p class="mt-2">Use <code>relative</code> for local offsets, <code>absolute</code> off the flow (positioned to nearest ancestor with position), <code>fixed</code> for viewport pinned elements, <code>sticky</code> for hybrid behaviors (excellent for headers/TOC).</p>
+      </details>
+
+      <details>
+        <summary>Sticky example</summary>
+        <div class="code"><span class="sel">aside</span> { <span class="prop">position</span>: <span class="val">sticky</span>; <span class="prop">top</span>: <span class="val">1rem</span>; }</div>
+      </details>
+    </section>
+
+    <!-- RESPONSIVE -->
+    <section id="responsive" class="lesson">
+      <h2>Responsive Design & Units</h2>
+
+      <details open>
+        <summary>Mobile-first media queries</summary>
+        <div class="code">@media (min-width: 768px) {
+  .container { <span class="prop">max-width</span>: <span class="val">720px</span>; }
+}</div>
+        <p class="mt-2 small-muted">Write base (mobile) styles first, then add breakpoints upward to reduce overrides and improve mobile performance.</p>
+      </details>
+
+      <details>
+        <summary>Units: rem, em, %, vw/vh</summary>
+        <p class="mt-2">Use <code>rem</code> for consistent scale, <code>%</code> for fluid widths, and viewport units for full-screen artboards. Use <code>clamp()</code> for fluid typography.</p>
+      </details>
+    </section>
+
+    <section id="fluid" class="lesson">
+      <h2>Fluid Typography & clamp()</h2>
+      <details open>
+        <summary>Example</summary>
+        <div class="code">h1 { <span class="prop">font-size</span>: <span class="val">clamp(1.5rem, 2.5vw, 2.5rem)</span>; }</div>
+        <p class="mt-2 small-muted">Clamp provides min, preferred, and max — great for responsive text without many breakpoints.</p>
+      </details>
+    </section>
+
+    <!-- TRANSITIONS -->
+    <section id="transitions" class="lesson">
+      <h2>Transforms & Transitions</h2>
+
+      <details open>
+        <summary>Transitions (use for hover/focus)</summary>
+        <div class="code">.btn { <span class="prop">transition</span>: <span class="val">transform .18s ease, box-shadow .18s ease</span>; }
+.btn:hover { <span class="prop">transform</span>: <span class="val">translateY(-3px)</span>; }</div>
+        <p class="mt-2 small-muted">Animate properties that avoid layout (transform, opacity) for performance.</p>
+      </details>
+
+      <details>
+        <summary>Transforms</summary>
+        <div class="code">.tile { <span class="prop">transform</span>: <span class="val">rotate(-2deg) scale(.98)</span>; }</div>
+      </details>
+    </section>
+
+    <!-- ANIMATIONS -->
+    <section id="animations" class="lesson">
+      <h2>Animations & Keyframes</h2>
+
+      <details open>
+        <summary>Keyframes & usage</summary>
+        <div class="code">@keyframes fadeUp {
+  0% { <span class="prop">opacity</span>: <span class="val">0</span>; <span class="prop">transform</span>: <span class="val">translateY(8px)</span>; }
+  100% { <span class="prop">opacity</span>: <span class="val">1</span>; <span class="prop">transform</span>: <span class="val">translateY(0)</span>; }
+}
+.card { <span class="prop">animation</span>: <span class="val">fadeUp 420ms ease both</span>; }</div>
+        <p class="mt-2 small-muted">Respect <code>prefers-reduced-motion</code> for accessibility.</p>
+      </details>
+
+      <details>
+        <summary>Reduce motion support</summary>
+        <div class="code">@media (prefers-reduced-motion: reduce) {
+  .card { <span class="prop">animation</span>: <span class="val">none</span>; <span class="prop">transition</span>: <span class="val">none</span>; }
+}</div>
+      </details>
+    </section>
+
+    <!-- VARIABLES -->
+    <section id="variables" class="lesson">
+      <h2>Custom Properties (CSS Variables)</h2>
+
+      <details open>
+        <summary>Define and use variables</summary>
+        <div class="code">:root {
+  --brand: <span class="val">#0d6efd</span>;
+  --gap: <span class="val">1rem</span>;
+  --text: <span class="val">#1f2937</span>;
+}
+.btn { <span class="prop">background</span>: <span class="val">var(--brand)</span>; <span class="prop">padding</span>: <span class="val">var(--gap)</span>; }</div>
+        <p class="mt-2 small-muted">Variables cascade and can be changed in media queries for theming (dark mode).</p>
+      </details>
+
+      <details>
+        <summary>Runtime updates & theming</summary>
+        <p class="mt-2 small-muted">Update variables with JavaScript to switch themes without repainting many rules.</p>
+      </details>
+    </section>
+
+    <!-- FUNCTIONS -->
+    <section id="functions" class="lesson">
+      <h2>calc(), min(), max(), clamp()</h2>
+      <details open>
+        <summary>Examples</summary>
+        <div class="code">.container { <span class="prop">width</span>: <span class="val">calc(100% - 2rem)</span>; }
+.title { <span class="prop">font-size</span>: <span class="val">clamp(1.05rem, 2vw, 1.5rem)</span>; }</div>
+        <p class="mt-2 small-muted">Use these functions for fluid layouts and to combine different units safely.</p>
+      </details>
+    </section>
+
+    <!-- ACCESSIBILITY -->
+    <section id="accessibility" class="lesson">
+      <h2>Accessibility & Motion</h2>
+      <details open>
+        <summary>Color contrast & focus</summary>
+        <p class="mt-2">Ensure text meets WCAG contrast. Provide visible focus styles for keyboard users (<code>outline</code> or custom focus ring).</p>
+        <div class="code">a:focus, button:focus { <span class="prop">outline</span>: <span class="val">3px solid #ffd54f</span>; <span class="prop">outline-offset</span>: <span class="val">3px</span>; }</div>
+      </details>
+
+      <details>
+        <summary>Reduce motion</summary>
+        <div class="code">@media (prefers-reduced-motion: reduce) { * { <span class="prop">animation</span>: <span class="val">none</span> !important; <span class="prop">transition</span>: <span class="val">none</span> !important; } }</div>
+      </details>
+    </section>
+
+    <!-- PERFORMANCE -->
+    <section id="performance" class="lesson">
+      <h2>Performance & Rendering</h2>
+      <details open>
+        <summary>Rendering tips</summary>
+        <ul class="mt-2">
+          <li>Avoid expensive layout-triggering animations (width/height/margin). Prefer <code>transform</code> and <code>opacity</code>.</li>
+          <li>Minimize CSS complexity and selector depth for faster matching.</li>
+          <li>Use critical CSS inline and lazy-load non-critical styles.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- PATTERNS -->
+    <section id="patterns" class="lesson">
+      <h2>Common UI Patterns & Examples</h2>
+
+      <details open>
+        <summary>Responsive card grid</summary>
+        <div class="code">.cards { <span class="prop">display</span>: <span class="val">grid</span>; <span class="prop">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(220px, 1fr))</span>; <span class="prop">gap</span>: <span class="val">1rem</span>; }</div>
+      </details>
+
+      <details>
+        <summary>Centered content</summary>
+        <div class="code">.center { <span class="prop">display</span>: <span class="val">flex</span>; <span class="prop">align-items</span>: <span class="val">center</span>; <span class="prop">justify-content</span>: <span class="val">center</span>; }</div>
+      </details>
+
+      <details>
+        <summary>Sticky sidebar (TOC)</summary>
+        <div class="code">.toc { <span class="prop">position</span>: <span class="val">sticky</span>; <span class="prop">top</span>: <span class="val">1rem</span>; }</div>
+      </details>
+    </section>
+
+    <footer class="mt-4 text-muted small">© 2025 Evans Mutuma — CSS Complete Course</footer>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Sidebar search
+    document.getElementById('sidebarSearch').addEventListener('input', function(e){
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#toc a').forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    });
+
+    // Highlight active link while scrolling
+    const links = Array.from(document.querySelectorAll('#toc a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function onScroll(){
+      let idx = 0;
+      sections.forEach((s,i) => { if(window.scrollY + 160 >= s.offsetTop) idx = i; });
+      links.forEach(l => l.classList.remove('active'));
+      if(links[idx]) links[idx].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+
+    // Smooth scroll
+    document.querySelectorAll('#toc a').forEach(a => {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>

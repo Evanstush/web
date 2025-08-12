@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML — Complete Notes & Reference | Evans Mutuma</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{--brand:#0d6efd;--muted:#6c757d}
+    html,body{height:100%}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:#f8fafc; margin:0}
+    /* Fixed sidebar */
+    .sidebar-wrap{position:fixed; top:0; left:0; bottom:0; width:320px; padding:1rem; overflow-y:auto; background:#ffffff; border-right:1px solid #e9ecef; z-index:1030}
+    .content-wrap{margin-left:340px; padding:2rem}
+    @media (max-width: 991px){
+      .sidebar-wrap{position:static; width:100%; height:auto; border-right:none}
+      .content-wrap{margin-left:0; padding:1rem}
+    }
+    .lesson{background:#fff; padding:1.6rem; border-radius:10px; box-shadow:0 8px 30px rgba(12,40,80,0.04); margin-bottom:1.25rem}
+    .code{background:#0b1220; color:#e6eef8; padding:1rem; border-radius:8px; overflow:auto; font-family:monospace; font-size:0.9rem}
+    pre{margin:0}
+    .term{font-weight:700; color:var(--brand)}
+    .note{background:#f1f7ff;border-left:4px solid var(--brand); padding:.75rem; border-radius:6px}
+    .toc .section {font-weight:700; margin-top:1rem}
+    .toc a{display:block; padding:.25rem .5rem; color:#0d6efd; text-decoration:none}
+    .toc a.active{background:linear-gradient(90deg, rgba(13,110,253,0.06), rgba(13,110,253,0.02)); border-radius:6px}
+    .small-muted{color:var(--muted)}
+    table.doc {width:100%; border-collapse:collapse}
+    table.doc td, table.doc th {border:1px solid #eee; padding:.4rem; vertical-align:top}
+    .tag{background:#eef5ff; border:1px solid #d7e8ff; padding:.15rem .4rem; border-radius:4px; font-family:monospace}
+  </style>
+</head>
+<body>
+  <div class="sidebar-wrap">
+    <div class="mb-3 d-flex align-items-center">
+      <img src="../pics/p1.jpg" alt="Evans" style="width:56px; height:56px; border-radius:50%; object-fit:cover; margin-right:12px">
+      <div>
+        <div class="fw-bold">Evans Mutuma</div>
+        <small class="text-muted">HTML — Complete Reference</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input id="sidebarSearch" class="form-control form-control-sm" placeholder="Search topics...">
+    </div>
+
+    <nav class="toc" id="toc">
+      <div class="section">Intro & Syntax</div>
+      <a href="#intro">Introduction & Document Structure</a>
+      <a href="#syntax">Syntax & Punctuation</a>
+
+      <div class="section">Document Head</div>
+      <a href="#head-overview">Head & Meta</a>
+      <a href="#link-base">link, base, favicon</a>
+      <a href="#scripts-style">style & script</a>
+
+      <div class="section">Content Structure</div>
+      <a href="#content-structure">header, nav, main, section, article, aside, footer</a>
+      <a href="#headings">Headings (h1-h6)</a>
+      <a href="#paragraphs">Paragraphs, hr, br</a>
+
+      <div class="section">Inline/Text</div>
+      <a href="#text-inline">strong, em, b, i, u, small, mark, abbr, cite, q</a>
+      <a href="#code-pre">code, pre, kbd, samp, var</a>
+
+      <div class="section">Links & Media</div>
+      <a href="#anchors">Anchor & Links (a)</a>
+      <a href="#images">Images: img, picture, source, srcset</a>
+      <a href="#multimedia">audio, video, track</a>
+      <a href="#embeds">iframe, embed, object</a>
+
+      <div class="section">Lists & Tables</div>
+      <a href="#lists">ul, ol, li, dl</a>
+      <a href="#tables">table, thead, tbody, tr, th, td, caption</a>
+
+      <div class="section">Forms</div>
+      <a href="#forms-overview">form & form flow</a>
+      <a href="#input-types">input types & attributes</a>
+      <a href="#select-textarea">select, textarea, button</a>
+
+      <div class="section">Advanced & Interactive</div>
+      <a href="#semantic">Semantic HTML & ARIA</a>
+      <a href="#data-templates">data-*, template, slot</a>
+      <a href="#graphics">canvas & svg (overview)</a>
+
+      <div class="section">Misc</div>
+      <a href="#global-attributes">Global attributes</a>
+      <a href="#entities">Entities & special chars</a>
+      <a href="#best-practices">Best Practices & SEO</a>
+      <div class="mt-3 small text-muted">Tip: use the sidebar to jump to any topic. It's sticky on desktop.</div>
+    </nav>
+  </div>
+
+  <div class="content-wrap">
+    <header class="mb-3">
+      <h1 class="fw-bold">HTML — Complete Notes & Reference</h1>
+      <p class="small-muted">Deep explanations for HTML tags, attributes, punctuation, and best practices. Read sequentially or jump to the section you need.</p>
+    </header>
+
+    <!-- INTRO -->
+    <section id="intro" class="lesson">
+      <h2>Introduction & Document Structure</h2>
+      <p>HTML (<strong>HyperText Markup Language</strong>) is a markup language used to structure content for the web. It tells browsers what the content is (headings, paragraphs, images, links, etc.) — not how to style it (CSS) or behave (JavaScript).</p>
+
+      <h4>Minimal valid HTML5 document (explanation follows)</h4>
+      <div class="code"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Page title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- page content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+      <h5>Line-by-line</h5>
+      <ul>
+        <li><span class="tag">&lt;!DOCTYPE html&gt;</span> — tells browsers to render using HTML5 rules (standards mode).</li>
+        <li><span class="tag">&lt;html lang="..."&gt;</span> — root element. <code>lang</code> is important for accessibility and SEO (screen readers and search engines).</li>
+        <li><span class="tag">&lt;head&gt;</span> — metadata, CSS links, scripts (deferred), SEO meta tags, and title.</li>
+        <li><span class="tag">&lt;meta charset="utf-8"&gt;</span> — defines character encoding (UTF-8 recommended).</li>
+        <li><span class="tag">&lt;meta name="viewport" ...&gt;</span> — mobile rendering; required for responsive design.</li>
+        <li><span class="tag">&lt;title&gt;</span> — visible in the browser tab and used by search engines.</li>
+        <li><span class="tag">&lt;body&gt;</span> — everything displayed to the user lives here.</li>
+      </ul>
+
+      <div class="note">Browsers are forgiving, but always write valid HTML to avoid unpredictable behavior, improve accessibility, and help tools (validators, screen readers).</div>
+    </section>
+
+    <!-- SYNTAX -->
+    <section id="syntax" class="lesson">
+      <h2>Syntax & Punctuation</h2>
+      <h4>Tags / Elements</h4>
+      <p>An element is written as <code>&lt;name&gt;content&lt;/name&gt;</code>. Many elements are containers (have opening and closing tags). Some are void elements (no closing tag needed): <code>area, base, br, col, embed, hr, img, input, link, meta, param, source, track, wbr</code>.</p>
+
+      <h4>Attributes</h4>
+      <p>Attributes are key-value pairs inside the opening tag: <code>&lt;img src=\"a.jpg\" alt=\"desc\" width=\"200\"&gt;</code>. Use double quotes around attribute values. Boolean attributes (like <code>disabled</code>) are true when present; no value required.</p>
+
+      <h4>Character entities</h4>
+      <p>Reserved characters (like &lt;, &gt;, &amp;) must be escaped when used as text: <code>&amp;lt;, &amp;gt;, &amp;amp;</code>. Use named entities for readability (<code>&amp;copy;</code>, <code>&amp;nbsp;</code>) or numeric references.</p>
+
+      <h4>Comments</h4>
+      <pre class="code">&lt;!-- do not put -- inside a comment --&gt;</pre>
+
+      <h4>Case & whitespace</h4>
+      <p>HTML is case-insensitive but lowercase is the convention. Whitespace collapses in normal flow; use <code>&lt;pre&gt;</code> or CSS <code>white-space</code> to preserve it.</p>
+    </section>
+
+    <!-- HEAD -->
+    <section id="head-overview" class="lesson">
+      <h2>HEAD: Meta, Links, Scripts, and Title</h2>
+      <p>The <code>&lt;head&gt;</code> contains metadata about the page. Metadata does not display but is read by browsers, search engines, and social platforms.</p>
+
+      <h4>Essential meta tags</h4>
+      <div class="code"><pre>&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;meta name="description" content="Short summary for SEO"&gt;</pre></div>
+
+      <h4>Open Graph & social tags (example)</h4>
+      <div class="code"><pre>&lt;meta property="og:title" content="Page Title"&gt;
+&lt;meta property="og:description" content="Summary"&gt;
+&lt;meta property="og:image" content="https://example.com/og-image.jpg"&gt;</pre></div>
+
+      <h4>Title & importance</h4>
+      <p><code>&lt;title&gt;</code> is required for accessibility and SEO — keep it concise and descriptive (50–70 chars recommended).</p>
+    </section>
+
+    <section id="link-base" class="lesson">
+      <h2>link, base, favicon</h2>
+      <h4>&lt;link&gt; — CSS, icons, preconnect</h4>
+      <div class="code"><pre>&lt;link rel="stylesheet" href="/styles.css"&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="icon" href="/favicon.ico"&gt;</pre></div>
+      <p><strong>base</strong> — <code>&lt;base href=\"/sub/\"&gt;</code> sets the base URL for relative links (use carefully — it affects all relative URLs).</p>
+    </section>
+
+    <section id="scripts-style" class="lesson">
+      <h2>style & script</h2>
+      <h4>&lt;style&gt;</h4>
+      <p>Use for small page-specific CSS. Prefer external files for caching and maintainability.</p>
+
+      <h4>&lt;script&gt;</h4>
+      <p>Scripts can block rendering — prefer <code>defer</code> for scripts that run after parsing, or <code>async</code> for independent scripts. Place critical inline scripts carefully.</p>
+      <div class="code"><pre>&lt;script src="/app.js" defer&gt;&lt;/script&gt;</pre></div>
+    </section>
+
+    <!-- STRUCTURE -->
+    <section id="content-structure" class="lesson">
+      <h2>Document Structure Elements</h2>
+      <p>These semantic structural elements improve meaning, accessibility, and SEO.</p>
+
+      <h4>&lt;header&gt;</h4>
+      <p>Introductory content for a page or section (logo, site heading, nav). Not the same as &lt;head&gt;.</p>
+
+      <h4>&lt;nav&gt;</h4>
+      <p>Navigation links. Use landmarks and ARIA labels for complex navigation.</p>
+
+      <h4>&lt;main&gt;</h4>
+      <p>Main content of the document — should be one per page.</p>
+
+      <h4>&lt;section&gt;</h4>
+      <p>Thematic grouping — use when content shares a common purpose and usually with a heading.</p>
+
+      <h4>&lt;article&gt;</h4>
+      <p>Self-contained content (blog post, news article) which could be syndicated.</p>
+
+      <h4>&lt;aside&gt;</h4>
+      <p>Sidebar or tangential content related to surrounding content.</p>
+
+      <h4>&lt;footer&gt;</h4>
+      <p>Author info, copyright, links, and closure of a section or page.</p>
+    </section>
+
+    <section id="headings" class="lesson">
+      <h2>Headings: &lt;h1&gt; — &lt;h6&gt;</h2>
+      <p>Use headings to build a document outline. Screen readers and search engines use them to understand structure.</p>
+      <ol>
+        <li><strong>&lt;h1&gt;</strong> — page title (one per page preferred).</li>
+        <li><strong>&lt;h2&gt;—&lt;h6&gt;</strong> — subsections. Keep nesting logical (don't skip levels).</li>
+      </ol>
+      <div class="note">Use CSS for visual sizing. Don't use headings solely for styling.</div>
+    </section>
+
+    <section id="paragraphs" class="lesson">
+      <h2>Paragraphs, Line Breaks & Horizontal Rules</h2>
+      <p><code>&lt;p&gt;</code> for paragraphs. Use <code>&lt;br&gt;</code> for forced line breaks (sparingly), and <code>&lt;hr&gt;</code> for thematic breaks.</p>
+    </section>
+
+    <!-- INLINE / TEXT -->
+    <section id="text-inline" class="lesson">
+      <h2>Text-level Semantics & Inline Elements</h2>
+
+      <h4>Emphasis & importance</h4>
+      <ul>
+        <li><code>&lt;strong&gt;</code> — strong importance (semantic, often bold)</li>
+        <li><code>&lt;em&gt;</code> — emphasis (semantic, often italic)</li>
+        <li><code>&lt;b&gt;</code>, <code>&lt;i&gt;</code> — presentational; prefer semantic tags</li>
+      </ul>
+
+      <h4>Small & highlight</h4>
+      <ul>
+        <li><code>&lt;small&gt;</code> — fine print</li>
+        <li><code>&lt;mark&gt;</code> — highlight a run of text</li>
+        <li><code>&lt;abbr title=\"...\"&gt;</code> — abbreviation with expansion via title</li>
+      </ul>
+
+      <h4>Quotations & citations</h4>
+      <ul>
+        <li><code>&lt;q&gt;</code> — short inline quotation (browser may add quotes)</li>
+        <li><code>&lt;blockquote&gt;</code> — longer block quote; include a <code>cite</code> if available</li>
+        <li><code>&lt;cite&gt;</code> — reference to a creative work or author</li>
+      </ul>
+
+      <h4>Code & technical text</h4>
+      <ul>
+        <li><code>&lt;code&gt;</code> — inline code</li>
+        <li><code>&lt;pre&gt;</code> — preformatted block (preserves whitespace)</li>
+        <li><code>&lt;kbd&gt;</code>, <code>&lt;samp&gt;</code>, <code>&lt;var&gt;</code> — keyboard input, sample output, variables</li>
+      </ul>
+    </section>
+
+    <!-- CODE BLOCK -->
+    <section id="code-pre" class="lesson">
+      <h2>Code Examples & Preformatted Text</h2>
+      <p>Use <code>&lt;pre&gt;&lt;code&gt;</code> for code blocks. Include language class for syntax highlighting (if you add a highlighter later): <code>&lt;pre&gt;&lt;code class=\"language-html\"&gt;</code>.</p>
+      <div class="code"><pre>&lt;pre&gt;&lt;code&gt;&lt;div&gt;Hello&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;</pre></div>
+    </section>
+
+    <!-- LINKS & IMAGES -->
+    <section id="anchors" class="lesson">
+      <h2>Anchor: &lt;a&gt; — Links</h2>
+      <p>Anchors create links to other pages, anchors (in-page), email, telephone, and downloads.</p>
+
+      <h4>Common href types</h4>
+      <ul>
+        <li><code>https://example.com</code> — external URL</li>
+        <li><code>/path/page.html</code> — site-relative</li>
+        <li><code>#section-id</code> — in-page anchor</li>
+        <li><code>mailto:you@example.com</code> — email</li>
+        <li><code>tel:+1234567890</code> — phone link</li>
+      </ul>
+
+      <h4>Security</h4>
+      <p>When using <code>target="_blank"</code> add <code>rel="noopener noreferrer"</code> to prevent the opened page from accessing the opener and to avoid performance/security issues.</p>
+
+      <div class="code"><pre>&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;Visit&lt;/a&gt;</pre></div>
+    </section>
+
+    <section id="images" class="lesson">
+      <h2>Images: &lt;img&gt;, &lt;picture&gt;, srcset</h2>
+      <p>Always include <code>alt</code>. For responsive images, use <code>&lt;picture&gt;</code> or <code>srcset</code> with <code>sizes</code>.</p>
+
+      <h4>Example (srcset)</h4>
+      <div class="code"><pre>&lt;img src="small.jpg"
+     srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w"
+     sizes="(max-width:600px) 480px, (max-width:1200px) 800px, 1200px"
+     alt="Description"&gt;</pre></div>
+
+      <h4>Picture & art direction</h4>
+      <div class="code"><pre>&lt;picture&gt;
+  &lt;source srcset="wide.jpg" media="(min-width:800px)"&gt;
+  &lt;img src="default.jpg" alt="..."&gt;
+&lt;/picture&gt;</pre></div>
+
+      <p class="note">Use WebP/AVIF for modern browsers to save bandwidth; provide fallbacks for older browsers.</p>
+    </section>
+
+    <section id="multimedia" class="lesson">
+      <h2>Audio & Video</h2>
+      <p>Use native elements to provide controls and accessibility. Provide captions/transcripts for accessibility and SEO.</p>
+
+      <div class="code"><pre>&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  Your browser does not support audio.
+&lt;/audio&gt;
+
+&lt;video controls width="640"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;track kind="captions" srclang="en" src="captions.vtt"&gt;
+  Your browser does not support video.
+&lt;/video&gt;</pre></div>
+
+      <p>Attributes: <code>controls</code>, <code>autoplay</code> (usually muted required), <code>loop</code>, <code>muted</code>, <code>poster</code>.</p>
+    </section>
+
+    <section id="embeds" class="lesson">
+      <h2>Embeds: iframe, embed, object</h2>
+      <p><code>&lt;iframe&gt;</code> is the common way to embed third-party content (YouTube, Google Maps). Use <code>title</code> and <code>loading="lazy"</code> for performance and accessibility. Consider sandboxing if untrusted: <code>sandbox="allow-scripts"</code>.</p>
+      <div class="code"><pre>&lt;iframe src="https://www.youtube.com/embed/..." title="Video title" loading="lazy"&gt;&lt;/iframe&gt;</pre></div>
+    </section>
+
+    <!-- LISTS -->
+    <section id="lists" class="lesson">
+      <h2>Lists: ul, ol, li, dl, dt, dd</h2>
+      <p>Use the appropriate list type for the content. For description/definition use <code>&lt;dl&gt;</code>.</p>
+      <div class="code"><pre>&lt;ul&gt;
+  &lt;li&gt;Item A&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Step 1&lt;/li;
+&lt;/ol&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;Term&lt;/dt&gt;
+  &lt;dd&gt;Definition&lt;/dd&gt;
+&lt;/dl&gt;</pre></div>
+    </section>
+
+    <!-- TABLES -->
+    <section id="tables" class="lesson">
+      <h2>Tables: table, thead, tbody, tr, th, td, caption</h2>
+      <p>Use tables for tabular data only. Add <code>&lt;caption&gt;</code> and proper header scopes for accessibility.</p>
+      <div class="code"><pre>&lt;table&gt;
+  &lt;caption&gt;Monthly Sales&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Month&lt;/th&gt;&lt;th scope="col"&gt;Sales&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Jan&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+    </section>
+
+    <!-- FORMS -->
+    <section id="forms-overview" class="lesson">
+      <h2>Forms & Inputs — Overview</h2>
+      <p>Forms collect user data. Use proper labels and validation. Never rely solely on client-side validation; always validate server-side too.</p>
+
+      <h4>Form attributes</h4>
+      <ul>
+        <li><code>action</code> — where to send data</li>
+        <li><code>method</code> — <code>GET</code> or <code>POST</code></li>
+        <li><code>enctype</code> — e.g., <code>multipart/form-data</code> for files</li>
+      </ul>
+    </section>
+
+    <section id="input-types" class="lesson">
+      <h2>Input Types & Attributes</h2>
+      <p>HTML provides many input types that offer built-in UI in browsers.</p>
+
+      <table class="doc mb-3">
+        <thead><tr><th>Type</th><th>Description / Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>text</code></td><td>Basic single-line text.</td></tr>
+          <tr><td><code>email</code></td><td>Validates email format; mobile keyboards optimized.</td></tr>
+          <tr><td><code>password</code></td><td>Obscures input; use HTTPS and server-side hashing.</td></tr>
+          <tr><td><code>number</code></td><td>Numeric input with step/min/max attributes.</td></tr>
+          <tr><td><code>tel</code></td><td>Phone number (no built-in validation).</td></tr>
+          <tr><td><code>url</code></td><td>Validates URL format.</td></tr>
+          <tr><td><code>date / time / datetime-local</code></td><td>Browser date/time pickers; format varies by browser.</td></tr>
+          <tr><td><code>checkbox / radio</code></td><td>Selection controls. Radio groups use same name attribute.</td></tr>
+          <tr><td><code>file</code></td><td>File upload control (requires server handling).</td></tr>
+          <tr><td><code>hidden</code></td><td>Hidden metadata (not secure for sensitive data).</td></tr>
+          <tr><td><code>range</code></td><td>Slider control; use labels for accessibility.</td></tr>
+          <tr><td><code>color</code></td><td>Color picker in supporting browsers.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Common attributes</h4>
+      <ul>
+        <li><code>name</code> — key sent to server.</li>
+        <li><code>id</code> — used for labels (<code>for</code>) and JS selection.</li>
+        <li><code>placeholder</code> — hint text (not a substitute for label).</li>
+        <li><code>required</code> — client-side required field.</li>
+        <li><code>min / max / step / pattern</code> — validation constraints.</li>
+      </ul>
+    </section>
+
+    <section id="select-textarea" class="lesson">
+      <h2>Select, Textarea & Button</h2>
+      <p><code>&lt;select&gt;</code> with <code>&lt;option&gt;</code> for dropdowns. Use <code>&lt;textarea&gt;</code> for multi-line text. Use <code>&lt;button&gt;</code> for actions; prefer <code>type="button|submit|reset"</code>.</p>
+
+      <div class="code"><pre>&lt;label for="country"&gt;Country&lt;/label&gt;
+&lt;select id="country" name="country"&gt;
+  &lt;option value="ke"&gt;Kenya&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;textarea name="message" rows="6"&gt;&lt;/textarea&gt;
+
+&lt;button type="submit"&gt;Send&lt;/button&gt;</pre></div>
+    </section>
+
+    <!-- ADVANCED / INTERACTIVE -->
+    <section id="semantic" class="lesson">
+      <h2>Semantic HTML & ARIA</h2>
+      <p>Use native semantics first. ARIA provides roles and states to enhance accessibility where native elements fall short.</p>
+
+      <h4>Examples</h4>
+      <div class="code"><pre>&lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;
+&lt;button aria-expanded="false" aria-controls="menu"&gt;Menu&lt;/button&gt;
+&lt;div role="dialog" aria-modal="true"&gt;Modal content&lt;/div&gt;</pre></div>
+
+      <div class="note">ARIA should not be used to fix structural problems. Use it to enhance, not replace, semantic HTML.</div>
+    </section>
+
+    <section id="data-templates" class="lesson">
+      <h2>data-*, template & slot</h2>
+      <p><code>data-* attributes</code> store custom data: <code>&lt;div data-id="123"&gt;</code>. Access via JavaScript: <code>element.dataset.id</code>.</p>
+
+      <h4>&lt;template&gt;</h4>
+      <p>Holds inert DOM that can be cloned and inserted via JS.</p>
+
+      <h4>&lt;slot&gt;</h4>
+      <p>Used in Web Components as placeholders for consumer content.</p>
+    </section>
+
+    <section id="graphics" class="lesson">
+      <h2>Canvas & SVG (overview)</h2>
+      <p><code>&lt;canvas&gt;</code> for pixel drawing via JavaScript. <code>&lt;svg&gt;</code> for scalable vector graphics. Both have broad use cases; learn their APIs when needed.</p>
+    </section>
+
+    <!-- GLOBAL ATTRIBUTES -->
+    <section id="global-attributes" class="lesson">
+      <h2>Global Attributes (applies to most elements)</h2>
+      <table class="doc mb-3">
+        <thead><tr><th>Attribute</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>Unique identifier for CSS/JS</td></tr>
+          <tr><td><code>class</code></td><td>Space-separated token list for styling</td></tr>
+          <tr><td><code>style</code></td><td>Inline CSS (use sparingly)</td></tr>
+          <tr><td><code>title</code></td><td>Tooltip; used by assistive tech occasionally</td></tr>
+          <tr><td><code>hidden</code></td><td>Hidden from rendering/user agents</td></tr>
+          <tr><td><code>data-*</code></td><td>Custom application data</td></tr>
+          <tr><td><code>role</code></td><td>ARIA role to enhance semantics</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ENTITIES -->
+    <section id="entities" class="lesson">
+      <h2>Entities & Special Characters</h2>
+      <p>Use entities for reserved characters and special symbols.</p>
+      <table class="doc mb-3">
+        <thead><tr><th>Entity</th><th>Output</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>Ampersand</td></tr>
+          <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Less-than</td></tr>
+          <tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Greater-than</td></tr>
+          <tr><td><code>&amp;nbsp;</code></td><td> </td><td>Non-breaking space</td></tr>
+          <tr><td><code>&amp;copy;</code></td><td>©</td><td>Copyright</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- BEST PRACTICES -->
+    <section id="best-practices" class="lesson">
+      <h2>Best Practices, SEO, and Accessibility (Practical)</h2>
+      <ol>
+        <li><strong>Semantic HTML:</strong> Prefer semantic elements (article, nav, main) over generic divs.</li>
+        <li><strong>Accessible images:</strong> Always provide meaningful <code>alt</code>. If decorative, set <code>alt=\"\"</code>.</li>
+        <li><strong>Forms:</strong> Always label inputs. Use fieldset/legend for groups.</li>
+        <li><strong>Responsive:</strong> Use viewport meta, fluid images, and relative units.</li>
+        <li><strong>Performance:</strong> Defer non-critical scripts, use lazy loading (<code>loading=\"lazy\"</code>), compress images, minimize DOM complexity.</li>
+        <li><strong>SEO:</strong> Use descriptive title/meta description, semantic headings, and structured data if needed.</li>
+        <li><strong>Security:</strong> Escape user input, use HTTPS, and avoid inline JS/CSS for CSP simplicity.</li>
+      </ol>
+    </section>
+
+    <footer class="mt-4 text-muted small">© 2025 Evans Mutuma — HTML Complete Reference</footer>
+  </div>
+
+  <script>
+    // Sidebar search
+    document.getElementById('sidebarSearch').addEventListener('input', function(e){
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#toc a').forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    });
+
+    // Highlight active link while scrolling
+    const links = Array.from(document.querySelectorAll('#toc a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function onScroll(){
+      let idx = 0;
+      sections.forEach((s,i) => { if(window.scrollY + 140 >= s.offsetTop) idx = i; });
+      links.forEach(l => l.classList.remove('active'));
+      if(links[idx]) links[idx].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('#toc a').forEach(a => {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+  </script>
+</body>
+</html>

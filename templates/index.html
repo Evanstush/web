@@ -106,29 +106,72 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Evans Mutuma</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link btn btn-outline-primary ms-2" href="resume/Full CV for web.pdf" download>Download CV</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <!-- Logo / Brand -->
+    <a class="navbar-brand fw-bold fs-4" href="#" style="color:#28a745;">
+      <span style="color:#000;">Evans</span> Mutuma
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu Items -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#vision">Vision</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+
+        <!-- Highlighted Button -->
+        <li class="nav-item ms-lg-3">
+          <a class="btn px-4 py-2"
+            href="course.html"
+            style="
+              background: linear-gradient(90deg, #28a745, #218838);
+              color: white;
+              border-radius: 30px;
+              font-weight: 600;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.transform='translateY(0)';">
+            Learn My Course
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!-- Navbar Styling -->
+<style>
+  .navbar-nav .nav-link {
+    font-weight: 500;
+    color: #555;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #28a745;
+    border-bottom: 2px solid #28a745;
+  }
+
+  .navbar-brand {
+    letter-spacing: 0.5px;
+  }
+</style>
+
 
   <!-- Hero Section -->
   <header class="bg-gradient py-5 text-center">
     <div class="container">
-      <img src="pics/p1.jpg" alt="Evans Profile" class="rounded-circle hero-img mb-3" width="160">
+      <img src="../pics/p1.jpg" alt="Evans Profile" class="rounded-circle hero-img mb-3" width="160">
       <h1 class="fw-bold">
         <span class="typed-text">Hello There. I’m Evans Mutuma.</span>
 
@@ -148,7 +191,7 @@
       
       <!-- Left Column: Image -->
       <div class="col-md-5 mb-4 mb-md-0 text-center">
-        <img src="pics/p2.jpg" alt="Evans Mutuma" class="img-fluid rounded-3 shadow" style="max-height: 400px;">
+        <img src="..\pics\p1.jpg" alt="Evans Mutuma" class="img-fluid rounded-3 shadow" style="max-height: 400px;">
       </div>
 
       <!-- Right Column: Content -->
@@ -178,6 +221,12 @@
         <a href="#projects" class="btn btn-primary mt-3">
           View My Projects <i class="bi bi-arrow-right-circle ms-1"></i>
         </a>
+        <div>
+          <a href="course.html" class="btn btn-success mt-3">
+              Start Learning <i class="bi bi-mortarboard-fill ms-1"></i>
+            </a>
+
+        </div>
       </div>
     </div>
   </div>
@@ -302,7 +351,7 @@
 
         <div class="col-md-6 mb-4">
           <div class="card project-card">
-            <img src="project/rent1.png" class="card-img-top" alt="Tush Rental App">
+            <img src="../project/rent1.png" class="card-img-top" alt="Tush Rental App">
             <div class="card-body">
               <h5 class="card-title">Tush Rental System <span class="badge bg-success ms-2">Live</span></h5>
               <p class="card-text">A Django-based rent collection platform with Mpesa integration, document upload, community chat, and a full admin panel.</p>
@@ -313,7 +362,7 @@
 
         <div class="col-md-6 mb-4">
           <div class="card project-card">
-            <img src="project/qb1.avif" class="card-img-top" alt="Kenyan QuickBooks">
+            <img src="../project/qb1.avif" class="card-img-top" alt="Kenyan QuickBooks">
             <div class="card-body">
               <h5 class="card-title">QuickBooks Kenya <span class="badge bg-warning text-dark ms-2">In Progress</span></h5>
               <p class="card-text">A simplified accounting app for local SMEs. Tracks daily expenses, incomes, and produces smart charts and summaries.</p>
@@ -324,7 +373,7 @@
 
         <div class="col-md-6 mb-4">
           <div class="card project-card">
-            <img src="project/coming-soon.avif" class="card-img-top" alt="Politician Tracker">
+            <img src="../project/coming-soon.avif" class="card-img-top" alt="Politician Tracker">
             <div class="card-body">
               <h5 class="card-title">Politician Tracker <span class="badge bg-secondary ms-2">Coming Soon</span></h5>
               <p class="card-text">A proposed app that tracks promises, failures, court cases, and achievements of Kenyan politicians. Includes mobile UI and future AI integration.</p>

@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JavaScript — Complete Course & Reference | Evans Mutuma</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0d6efd; --muted:#6c757d; --bg:#f6fbff;
+      --code-bg:#0b1220; --green:#4caf50; --blue:#2196f3; --orange:#ff9800; --cmt:#9e9e9e;
+    }
+    html,body{height:100%}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:var(--bg); margin:0; color:#112}
+    .sidebar{position:fixed; top:0; left:0; bottom:0; width:320px; padding:1rem; overflow-y:auto; background:#fff; border-right:1px solid #e6eefc; z-index:1030}
+    .content{margin-left:360px; padding:2rem; max-width:1200px}
+    @media (max-width:991px){ .sidebar{position:static;width:100%;} .content{margin-left:0;padding:1rem} }
+    .profile-sm{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--brand)}
+    .toc a{display:block;padding:.35rem .6rem;color:var(--brand);text-decoration:none;border-radius:6px}
+    .toc a:hover{background:rgba(13,110,253,0.06)}
+    .toc a.active{background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(13,110,253,0.02));font-weight:600}
+    .lesson{background:#fff;padding:1.25rem;border-radius:10px;box-shadow:0 8px 30px rgba(12,40,80,0.04);margin-bottom:1.25rem}
+    .code{background:var(--code-bg); color:#e6eef8; padding:1rem; border-radius:8px; overflow:auto; font-family:SFMono-Regular,Menlo,Consolas,monospace; font-size:.92rem}
+    .cmt{color:var(--cmt); font-style:italic}
+    .sel{color:var(--green)}
+    .prop{color:var(--blue)}
+    .val{color:var(--orange)}
+    .tag{background:#eef5ff;border:1px solid #d7e8ff;padding:.12rem .45rem;border-radius:6px;font-family:monospace}
+    .note{background:linear-gradient(90deg,#f1f7ff,#fbfdff);border-left:4px solid var(--brand);padding:.8rem;border-radius:6px}
+    .runbtn{min-width:120px}
+    .demo-output{background:#071026;color:#dff6ff;padding:.6rem;border-radius:6px;min-height:36px;font-family:monospace;white-space:pre-wrap}
+    details summary{cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="d-flex align-items-center mb-3">
+      <img src="../pics/p1.jpg" alt="Evans" class="profile-sm me-2">
+      <div>
+        <div class="fw-bold">Evans Mutuma</div>
+        <div class="small text-muted">JavaScript — Full Course</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input id="search" class="form-control form-control-sm" placeholder="Search topics...">
+    </div>
+
+    <nav class="toc" id="toc">
+      <div class="fw-bold small text-muted mb-2">Foundations</div>
+      <a href="#intro">Intro & environment</a>
+      <a href="#syntax">Syntax & punctuation</a>
+      <a href="#variables">Variables & types</a>
+      <a href="#operators">Operators</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">Control & Functions</div>
+      <a href="#control">Control Flow</a>
+      <a href="#functions">Functions & Scope</a>
+      <a href="#closures">Closures</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">Objects & Arrays</div>
+      <a href="#objects">Objects</a>
+      <a href="#arrays">Arrays</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">DOM & Events</div>
+      <a href="#dom">DOM Basics</a>
+      <a href="#events">Events</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">ES6+ & Advanced</div>
+      <a href="#es6">ES6+ features</a>
+      <a href="#classes">Classes & Prototypes</a>
+      <a href="#async">Async — Promises & async/await</a>
+      <a href="#modules">Modules (brief)</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">Internals & Patterns</div>
+      <a href="#hoisting">Hoisting & scope chain</a>
+      <a href="#eventloop">Event loop & concurrency</a>
+      <a href="#perf">Performance & best practices</a>
+
+      <div class="fw-bold small text-muted mt-3 mb-2">Browser APIs & Projects</div>
+      <a href="#storage">Storage & fetch</a>
+      <a href="#timers">Timers & Date</a>
+      <a href="#projects">Mini projects</a>
+
+      <div class="mt-3 small text-muted">Tip: click a topic. Use demo Run buttons to see code in action.</div>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="mb-4">
+      <h1 class="display-6">JavaScript — Complete Course & Reference</h1>
+      <p class="small text-muted">Everything from basics → advanced, with runnable demos and practical tips.</p>
+    </header>
+
+    <!-- INTRO -->
+    <section id="intro" class="lesson">
+      <h2>Introduction & Environment</h2>
+      <p>JavaScript is a dynamic scripting language that runs in web browsers and Node.js. It manipulates HTML/CSS (DOM), communicates with servers (fetch/XHR), and implements app logic.</p>
+      <div class="note">
+        <strong>Environments:</strong> Browser — provides DOM, BOM, fetch, localStorage, etc. Node.js — provides file system, process, HTTP server, etc.
+      </div>
+    </section>
+
+    <!-- SYNTAX -->
+    <section id="syntax" class="lesson">
+      <h2>Syntax & Punctuation — exact meanings</h2>
+      <ul>
+        <li><code>;</code> — statement terminator (optional in many cases due to ASI, but use it for clarity).</li>
+        <li><code>//</code> — single-line comment; <code>/* ... */</code> — multi-line comment.</li>
+        <li><code>{ ... }</code> — block (function, control flow, object literal braces).</li>
+        <li><code>( ... )</code> — grouping, function parameter list, IIFE invocation.</li>
+        <li><code>[ ... ]</code> — array literal or property access with variable index.</li>
+        <li><code>=></code> — arrow function (lexical this, concise syntax).</li>
+      </ul>
+
+      <div class="code">
+<span class="cmt">/* Example: statement structure */</span>
+<span class="sel">let</span> <span class="val">x</span> <span class="operator">=</span> <span class="val">10</span><span class="punctuation">;</span>
+<span class="sel">if</span> (<span class="val">x</span> <span class="operator">></span> <span class="val">5</span>) { <span class="cmt">// block</span>
+  <span class="sel">console</span><span class="punctuation">.</span><span class="sel">log</span>(<span class="val">'big'</span>)<span class="punctuation">;</span>
+}
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="syntaxDemo">Run simple syntax demo</button>
+        <div id="syntaxDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- VARIABLES -->
+    <section id="variables" class="lesson">
+      <h2>Variables & Data Types</h2>
+
+      <h5>Declarations</h5>
+      <p><strong>var</strong> (function-scoped, hoisted), <strong>let</strong> (block-scoped), <strong>const</strong> (block-scoped, constant binding). Use <code>let/const</code> in modern code.</p>
+
+      <div class="code">
+<span class="cmt">/* var hoisting example */</span>
+<span class="sel">console</span><span class="punctuation">.</span><span class="sel">log</span>(<span class="val">hoisted</span>)<span class="punctuation">;</span> <span class="cmt">// undefined</span>
+<span class="sel">var</span> <span class="val">hoisted</span> <span class="operator">=</span> <span class="val">5</span><span class="punctuation">;</span>
+
+<span class="cmt">/* let/const not initialized at hoist-time */</span>
+      </div>
+
+      <h5>Primitive types</h5>
+      <ul>
+        <li><strong>Number</strong> — 64-bit float (including integers). e.g. <code>123, 3.14, NaN, Infinity</code>.</li>
+        <li><strong>BigInt</strong> — arbitrary precision integers (`123n`).</li>
+        <li><strong>String</strong> — text (`"hello"` or `'hi'` or template `` `text` ``).</li>
+        <li><strong>Boolean</strong> — `true`/`false`.</li>
+        <li><strong>Symbol</strong> — unique identifiers.</li>
+        <li><strong>Null</strong> — explicit empty value.</li>
+        <li><strong>Undefined</strong> — uninitialized value.</li>
+      </ul>
+
+      <h5>Type checking</h5>
+      <div class="code"><span class="sel">typeof</span> <span class="val">123</span> <span class="cmt">// "number"</span></div>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="varsDemo">Run variables demo</button>
+        <div id="varsDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- OPERATORS -->
+    <section id="operators" class="lesson">
+      <h2>Operators</h2>
+      <h5>Arithmetic</h5>
+      <p><code>+, -, *, /, %, ** (exponent)</code></p>
+
+      <h5>Comparison</h5>
+      <p><code>==, != (loose)</code> perform coercion; <code>===, !== (strict)</code> do not coerce — prefer strict equality.</p>
+
+      <h5>Logical</h5>
+      <p><code>&& (and), || (or), ! (not)</code> — short-circuit rules are important for guard patterns.</p>
+
+      <h5>Nullish coalescing & optional chaining</h5>
+      <div class="code">
+<span class="val">const</span> <span class="sel">x</span> <span class="operator">=</span> <span class="val">null</span><span class="punctuation">;</span>
+<span class="sel">const</span> <span class="val">v</span> <span class="operator">=</span> <span class="val">x</span> <span class="operator">??</span> <span class="val">10</span><span class="punctuation">;</span>
+<span class="cmt">// optional chaining: obj?.prop?.method()</span>
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="opsDemo">Run operators demo</button>
+        <div id="opsDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- CONTROL -->
+    <section id="control" class="lesson">
+      <h2>Control Flow (if, switch, loops)</h2>
+
+      <details>
+        <summary>if / else</summary>
+        <div class="code"><span class="sel">if</span> (<span class="val">cond</span>) { /*...*/ } <span class="sel">else if</span> (...) { /*...*/ } <span class="sel">else</span> { /*...*/ }</div>
+      </details>
+
+      <details>
+        <summary>switch</summary>
+        <div class="code"><span class="sel">switch</span> (<span class="val">expr</span>) { <span class="sel">case</span> <span class="val">1</span>: break; <span class="sel">default</span>: }</div>
+      </details>
+
+      <details>
+        <summary>loops: for, while, for...of, for...in</summary>
+        <div class="code">
+<span class="sel">for</span> (<span class="val">let</span> i <span class="operator">=</span> 0; i < 5; i<span class="operator">++</span>) { console.log(i) }
+</div>
+      </details>
+    </section>
+
+    <!-- FUNCTIONS -->
+    <section id="functions" class="lesson">
+      <h2>Functions — declarations, expressions, arrows</h2>
+
+      <h5>Declaration vs Expression</h5>
+      <div class="code">
+<span class="cmt">/* Declaration (hoisted) */</span>
+<span class="sel">function</span> <span class="val">sum</span>(<span class="val">a</span>,<span class="val">b</span>){<span class="sel">return</span> a + b }
+<span class="cmt">/* Expression */</span>
+<span class="sel">const</span> <span class="val">s</span> <span class="operator">=</span> <span class="sel">function</span>(a,b){return a+b}
+<span class="cmt">/* Arrow (lexical this) */</span>
+<span class="sel">const</span> <span class="val">add</span> <span class="operator">=</span> (<span class="val">a</span>,<span class="val">b</span>) <span class="operator">=&gt;</span> a + b;
+      </div>
+
+      <h5>Parameters: default, rest</h5>
+      <div class="code">
+<span class="sel">function</span> greet(name=<span class="val">'Guest'</span>){return `Hi ${name}`} 
+<span class="sel">function</span> sumAll(...nums){return nums.reduce((s,n)=>s+n,0)}
+      </div>
+
+      <h5>Scope</h5>
+      <p>Block vs function vs global scope. Use <code>let</code>/<code>const</code> to avoid accidental globals.</p>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="fnDemo">Run function demo</button>
+        <div id="fnDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- CLOSURES -->
+    <section id="closures" class="lesson">
+      <h2>Closures</h2>
+      <p>A closure is a function that captures variables from its outer (lexical) scope. Useful for privacy & factories.</p>
+      <div class="code">
+<span class="sel">function</span> makeCounter(){ 
+  <span class="sel">let</span> count <span class="operator">=</span> <span class="val">0</span><span class="punctuation">;</span>
+  <span class="sel">return</span> <span class="operator">()</span> <span class="operator">=&gt;</span> ++count 
+}
+<span class="sel">const</span> c <span class="operator">=</span> makeCounter();
+c() <span class="cmt">// 1</span>
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="closureDemo">Run closure demo</button>
+        <div id="closureDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- OBJECTS -->
+    <section id="objects" class="lesson">
+      <h2>Objects & property access</h2>
+      <p>Objects are key-value maps. Keys are strings/symbols; values can be anything.</p>
+      <div class="code">
+<span class="sel">const</span> obj <span class="operator">=</span> { name:<span class="val">'Evan'</span>, age: <span class="val">28</span> };
+obj.name <span class="cmt">// dot access</span>
+obj['age'] <span class="cmt">// bracket access (dynamic key)</span>
+      </div>
+
+      <h5>Destructuring & rest</h5>
+      <div class="code">
+<span class="sel">const</span> { name, ...rest } <span class="operator">=</span> obj;
+      </div>
+
+      <h5>Object methods & 'this'</h5>
+      <div class="code">
+<span class="sel">const</span> person <span class="operator">=</span> {
+  name:<span class="val">'Evan'</span>,
+  greet(){ <span class="sel">console</span>.log(<span class="val">this</span>.name) }
+}
+person.greet()
+      </div>
+    </section>
+
+    <!-- ARRAYS -->
+    <section id="arrays" class="lesson">
+      <h2>Arrays & common methods</h2>
+      <p>Arrays are ordered lists. Prefer array methods over manual loops for clarity.</p>
+
+      <table class="table table-sm">
+        <thead><tr><th>Method</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>push</code></td><td>append</td></tr>
+          <tr><td><code>pop</code></td><td>remove last</td></tr>
+          <tr><td><code>shift/unshift</code></td><td>remove/add at start</td></tr>
+          <tr><td><code>map</code></td><td>transform array</td></tr>
+          <tr><td><code>filter</code></td><td>select items</td></tr>
+          <tr><td><code>reduce</code></td><td>accumulate</td></tr>
+          <tr><td><code>find</code></td><td>find first</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code">
+<span class="sel">const</span> nums <span class="operator">=</span> [1,2,3,4];
+<span class="sel">const</span> sq <span class="operator">=</span> nums.map(n <span class="operator">=&gt;</span> n*n);
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary runbtn" data-run="arrayDemo">Run array demo</button>
+        <div id="arrayDemoOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- DOM -->
+    <section id="dom" class="lesson">
+      <h2>DOM — selecting & manipulating elements</h2>
+      <p>Use <code>querySelector</code> and <code>querySelectorAll</code> for modern selection. Avoid heavy DOM queries in loops — cache nodes.</p>
+
+      <div class="code">
+<span class="sel">const</span> el <span class="operator">=</span> document.querySelector(<span class="val">'#demo'</span>);
+el.textContent <span class="operator">=</span> <span class="val">'Hello DOM'</span>;
+el.classList.add(<span class="val">'active'</span>);
+      </div>
+
+      <div class="mt-3">
+        <div class="mb-2 small text-muted">Try the example below:</div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-primary" id="domChangeBtn">Change demo text</button>
+          <button class="btn btn-sm btn-outline-secondary" id="domCreateBtn">Add item</button>
+        </div>
+        <div id="domDemoBox" class="mt-2 p-2 border rounded bg-white">
+          <div id="demo">This is demo text</div>
+          <ul id="domList" class="mt-2">
+            <li>Item A</li>
+            <li>Item B</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="lesson">
+      <h2>Events</h2>
+      <p>Use <code>addEventListener</code> to attach handlers. Remember to remove listeners on cleanup for long-lived apps.</p>
+
+      <div class="code">
+<span class="sel">const</span> btn <span class="operator">=</span> document.querySelector(<span class="val">'#myBtn'</span>);
+btn.addEventListener(<span class="val">'click'</span>, e <span class="operator">=&gt;</span> console.log(e));
+      </div>
+
+      <div class="mt-3">
+        <button id="myBtn" class="btn btn-sm btn-success">Click me</button>
+        <div id="evOutput" class="demo-output mt-2"></div>
+      </div>
+    </section>
+
+    <!-- ES6+ -->
+    <section id="es6" class="lesson">
+      <h2>ES6+ features</h2>
+
+      <h5>Template literals</h5>
+      <div class="code">
+<span class="sel">const</span> name <span class="operator">=</span> <span class="val">'Evan'</span>;
+console.log(<span class="val">`Hi ${name}!`</span>);
+      </div>
+
+      <h5>Destructuring</h5>
+      <div class="code">
+<span class="sel">const</span> [a,b] <span class="operator">=</span> [1,2];
+<span class="sel">const</span> {x,y} <span class="operator">=</span> {x:10,y:20};
+      </div>
+
+      <h5>Spread & rest</h5>
+      <div class="code">
+<span class="sel">const</span> arr2 <span class="operator">=</span> [...nums, 5,6];
+<span class="sel">function</span> fn(...args){ return args.length; }
+      </div>
+
+      <h5>Modules (brief)</h5>
+      <p>Use <code>export</code> / <code>import</code> for modular code. In static HTML you need bundlers or type="module".</p>
+    </section>
+
+    <!-- CLASSES -->
+    <section id="classes" class="lesson">
+      <h2>Classes & prototypes</h2>
+      <p>ES6 <code>class</code> is syntactic sugar over prototype-based inheritance.</p>
+      <div class="code">
+<span class="sel">class</span> Animal {
+  <span class="sel">constructor</span>(name){ this.name = name }
+  speak(){ console.log(`${this.name} speaks`) }
+}
+<span class="sel">const</span> a = <span class="operator">new</span> Animal('Luna');
+a.speak();
+      </div>
+    </section>
+
+    <!-- ASYNC -->
+    <section id="async" class="lesson">
+      <h2>Async: Promises, fetch, async/await</h2>
+
+      <details open>
+        <summary>Promise basics</summary>
+        <div class="code">
+<span class="sel">const</span> p <span class="operator">=</span> <span class="sel">new</span> Promise((resolve,reject) <span class="operator">=&gt;</span> {
+  <span class="sel">setTimeout</span>(() <span class="operator">=&gt;</span> resolve(<span class="val">'done'</span>), 300);
+});
+p.then(console.log).catch(console.error);
+        </div>
+      </details>
+
+      <details>
+        <summary>fetch & async/await</summary>
+        <div class="code">
+<span class="sel">async function</span> getPost(){
+  <span class="sel">try</span>{
+    <span class="sel">const</span> res <span class="operator">=</span> <span class="sel">await</span> fetch('https://jsonplaceholder.typicode.com/posts/1');
+    <span class="sel">const</span> data <span class="operator">=</span> <span class="sel">await</span> res.json();
+    console.log(data);
+  } <span class="sel">catch</span>(e){ console.error(e) }
+}
+        </div>
+        <div class="mt-2">
+          <button class="btn btn-sm btn-outline-primary runbtn" data-run="fetchDemo">Run fetch demo</button>
+          <div id="fetchDemoOutput" class="demo-output mt-2"></div>
+        </div>
+      </details>
+    </section>
+
+    <!-- MODULES -->
+    <section id="modules" class="lesson">
+      <h2>Modules (ESM) — short</h2>
+      <p>Use <code>export</code> and <code>import</code> to split code. In the browser use &lt;script type="module"&gt;. Example:</p>
+      <div class="code">
+<span class="cmt">/* utils.js */</span>
+<span class="sel">export</span> <span class="sel">function</span> add(a,b){ return a+b }
+<span class="cmt">/* main.js */</span>
+<span class="sel">import</span> {add} <span class="sel">from</span> './utils.js'
+      </div>
+    </section>
+
+    <!-- HOISTING -->
+    <section id="hoisting" class="lesson">
+      <h2>Hoisting & scope chain</h2>
+      <p>Declarations (var, function declarations) are hoisted; let/const are hoisted but in TDZ until initialised. Lexical scope chain determines variable resolution.</p>
+      <div class="code">
+<span class="cmt">/* Example */</span>
+console.log(foo) <span class="cmt">// undefined (var hoisted)</span>
+<span class="sel">var</span> foo <span class="operator">=</span> <span class="val">5</span><span class="punctuation">;</span>
+      </div>
+    </section>
+
+    <!-- EVENT LOOP -->
+    <section id="eventloop" class="lesson">
+      <h2>Event loop, microtasks, macrotasks</h2>
+      <p>Understand call stack, web APIs, task queue (macrotasks), microtask queue (Promises). Promises (then/await) run in microtask queue — they run before setTimeout callbacks.</p>
+      <div class="code">
+console.log('start');
+setTimeout(()=>console.log('timeout'),0);
+Promise.resolve().then(()=>console.log('promise'));
+console.log('end');
+// Output: start, end, promise, timeout
+      </div>
+    </section>
+
+    <!-- STORAGE & FETCH -->
+    <section id="storage" class="lesson">
+      <h2>Storage, fetch & JSON</h2>
+      <h5>localStorage & sessionStorage</h5>
+      <div class="code">
+<span class="sel">localStorage</span>.setItem('key','value');
+<span class="sel">const</span> v <span class="operator">=</span> <span class="sel">localStorage</span>.getItem('key');
+      </div>
+
+      <h5>JSON parse/stringify</h5>
+      <div class="code">
+<span class="sel">const</span> obj <span class="operator">=</span> {a:1};
+<span class="sel">const</span> s <span class="operator">=</span> JSON.stringify(obj);
+JSON.parse(s);
+      </div>
+    </section>
+
+    <!-- TIMERS -->
+    <section id="timers" class="lesson">
+      <h2>Timers & Date</h2>
+      <p><code>setTimeout(callback, ms)</code> schedules a macrotask. <code>setInterval</code> repeats. Use <code>clearTimeout/clearInterval</code> to cancel.</p>
+      <div class="code">
+<span class="sel">const</span> id = setTimeout(() => console.log('later'), 1000);
+clearTimeout(id);
+      </div>
+    </section>
+
+    <!-- PROTOTYPES -->
+    <section id="perf" class="lesson">
+      <h2>Prototypes, performance & best practices</h2>
+      <p>Objects inherit via prototype chain. For performance: minimize layout thrashing, batch DOM writes, avoid deeply nested selectors, use passive listeners for scroll, and prefer CSS animations (transform/opacity).</p>
+      <ul>
+        <li>Use debouncing/throttling for frequent events</li>
+        <li>Avoid memory leaks (remove listeners on teardown)</li>
+        <li>Profile with browser DevTools</li>
+      </ul>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="lesson">
+      <h2>Mini Projects & Demos</h2>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded bg-white">
+            <h5>Counter</h5>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-secondary" id="decBtn">-</button>
+              <div id="counterVal" class="flex-grow-1 text-center">0</div>
+              <button class="btn btn-sm btn-outline-secondary" id="incBtn">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded bg-white">
+            <h5>To-Do (localStorage)</h5>
+            <div class="mb-2">
+              <input id="todoInput" class="form-control form-control-sm" placeholder="New todo">
+              <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-sm btn-primary" id="addTodo">Add</button>
+                <button class="btn btn-sm btn-outline-secondary" id="clearTodo">Clear</button>
+              </div>
+            </div>
+            <ul id="todoList" class="list-group list-group-flush small"></ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded bg-white">
+            <h5>Fetch Example</h5>
+            <button class="btn btn-sm btn-primary" id="loadPost">Load Post</button>
+            <div id="postOut" class="mt-2 small"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="mt-4 small text-muted">© 2025 Evans Mutuma — JavaScript Complete Guide</footer>
+  </main>
+
+  <!-- Script: demos & utilities -->
+  <script>
+    // Sidebar search + active highlighting
+    const search = document.getElementById('search');
+    search.addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#toc a').forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    });
+    const links = Array.from(document.querySelectorAll('#toc a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function onScroll(){
+      let idx = 0;
+      sections.forEach((s,i)=> { if(window.scrollY + 160 >= s.offsetTop) idx = i; });
+      links.forEach(l => l.classList.remove('active'));
+      if(links[idx]) links[idx].classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+
+    // utility to append to demo outputs
+    function write(id, text){ const el = document.getElementById(id); if(!el) return; el.textContent = String(text); }
+
+    // Syntax demo
+    document.querySelector('[data-run="syntaxDemo"]').addEventListener('click', ()=> {
+      write('syntaxDemoOutput', 'Running: simple math and greeting...\\n');
+      const a = 4, b = 6;
+      write('syntaxDemoOutput', '4 + 6 = ' + (a + b));
+      console.log('syntaxDemo:', a + b);
+    });
+
+    // Variables demo
+    document.querySelector('[data-run="varsDemo"]').addEventListener('click', ()=> {
+      let x = 'hello';
+      const y = 42;
+      var z = true;
+      const out = [
+        'let x = ' + x,
+        'const y = ' + y,
+        'var z = ' + z
+      ].join('\\n');
+      write('varsDemoOutput', out);
+    });
+
+    // Operators demo
+    document.querySelector('[data-run="opsDemo"]').addEventListener('click', ()=> {
+      const a = '5'; const b = 5;
+      const loose = (a == b);
+      const strict = (a === b);
+      const nullish = null ?? 'fallback';
+      write('opsDemoOutput', `5 == '5' → ${loose}\\n5 === '5' → ${strict}\\nnull ?? 'fallback' → ${nullish}`);
+    });
+
+    // Functions demo
+    document.querySelector('[data-run="fnDemo"]').addEventListener('click', ()=> {
+      const add = (a,b)=>a+b;
+      const greet = (n='Guest') => `Hi ${n}`;
+      write('fnDemoOutput', `add(2,3)=${add(2,3)}\\n${greet('Evans')}`);
+    });
+
+    // Closure demo
+    document.querySelector('[data-run="closureDemo"]').addEventListener('click', ()=> {
+      function makeCounter(){ let c=0; return ()=>++c; }
+      const c = makeCounter();
+      write('closureDemoOutput', c() + '\\n' + c() + '\\n' + c());
+    });
+
+    // Array demo
+    document.querySelector('[data-run="arrayDemo"]').addEventListener('click', ()=> {
+      const nums = [1,2,3,4,5];
+      const even = nums.filter(n=>n%2===0);
+      const sum = nums.reduce((s,n)=>s+n,0);
+      write('arrayDemoOutput', 'nums: '+nums+'\\neven: '+even+'\\nsum: '+sum);
+    });
+
+    // DOM demos (interactive)
+    document.getElementById('domChangeBtn').addEventListener('click', ()=> {
+      document.getElementById('demo').textContent = 'Text changed at ' + new Date().toLocaleTimeString();
+    });
+    document.getElementById('domCreateBtn').addEventListener('click', ()=> {
+      const li = document.createElement('li');
+      li.textContent = 'New item ' + (document.querySelectorAll('#domList li').length + 1);
+      document.getElementById('domList').appendChild(li);
+    });
+
+    // Events demo
+    document.getElementById('myBtn').addEventListener('click', ()=> {
+      const out = document.getElementById('evOutput');
+      out.textContent = 'Button clicked at ' + new Date().toLocaleTimeString();
+    });
+
+    // Fetch demo
+    document.querySelector('[data-run="fetchDemo"]').addEventListener('click', async ()=> {
+      const out = document.getElementById('fetchDemoOutput');
+      out.textContent = 'Loading...';
+      try{
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const data = await res.json();
+        out.textContent = JSON.stringify(data, null, 2);
+      }catch(e){ out.textContent = 'Error: ' + e.message }
+    });
+
+    // Projects: counter
+    const counterVal = document.getElementById('counterVal');
+    let counter = 0;
+    document.getElementById('incBtn').addEventListener('click', ()=> counterVal.textContent = ++counter);
+    document.getElementById('decBtn').addEventListener('click', ()=> counterVal.textContent = --counter);
+
+    // ToDo - localStorage
+    const todoInput = document.getElementById('todoInput');
+    const todoList = document.getElementById('todoList');
+    const loadTodos = ()=>{
+      const s = localStorage.getItem('ev_todos') || '[]';
+      try{
+        const arr = JSON.parse(s);
+        todoList.innerHTML = '';
+        arr.forEach((t,i)=>{
+          const li = document.createElement('li');
+          li.className = 'list-group-item d-flex justify-content-between align-items-center';
+          li.textContent = t;
+          const btn = document.createElement('button');
+          btn.className = 'btn btn-sm btn-outline-danger';
+          btn.textContent = 'Del';
+          btn.addEventListener('click', ()=> {
+            arr.splice(i,1);
+            localStorage.setItem('ev_todos', JSON.stringify(arr));
+            loadTodos();
+          });
+          li.appendChild(btn);
+          todoList.appendChild(li);
+        });
+      }catch(e){ console.error(e) }
+    };
+    document.getElementById('addTodo').addEventListener('click', ()=>{
+      const v = todoInput.value.trim();
+      if(!v) return;
+      const s = localStorage.getItem('ev_todos') || '[]';
+      const arr = JSON.parse(s);
+      arr.push(v);
+      localStorage.setItem('ev_todos', JSON.stringify(arr));
+      todoInput.value = '';
+      loadTodos();
+    });
+    document.getElementById('clearTodo').addEventListener('click', ()=> {
+      localStorage.removeItem('ev_todos');
+      loadTodos();
+    });
+    loadTodos();
+
+    // Fetch example button
+    document.getElementById('loadPost').addEventListener('click', async ()=>{
+      const out = document.getElementById('postOut');
+      out.textContent = 'Loading...';
+      try{
+        const r = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+        const j = await r.json();
+        out.textContent = j.title + '\\n' + j.body;
+      }catch(e){ out.textContent = 'Error: ' + e.message }
+    });
+
+    // Simple fetch sandbox for offline environments
+    // (fetch may fail if browser blocks cross-origin in file://)
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
